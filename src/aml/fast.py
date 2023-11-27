@@ -7,7 +7,7 @@ import pandas as pd
 import fasttext
 import gensim
 
-from .mdl import AbstractAspectModel, AspectPairType, BatchPairsType, flatten
+from .mdl import AbstractAspectModel, AbstractSentimentModel, AspectPairType, BatchPairsType, flatten
 from cmn.review import Review
 
 # Utility functions
@@ -17,6 +17,12 @@ def add_label(r):
         for j, _, _ in r.aos[i]: # j is the index of aspect words in sentence s
             for k in j: s[k] = "__label__" + s[k] if s[k].find("__label__") == -1 else s[k]
     return r_
+
+def add_label_sentiment(r):
+    r_ = copy.deepcopy(r)
+    for i, s in enumerate(r_.sentences):
+        for _, _, sentiment in r.aos[i]:
+            s.append("__label__" + sent)
 
 def review_formatted_file(path, corpus):
     with open(path, 'w', encoding='utf-8') as f:
