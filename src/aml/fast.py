@@ -11,7 +11,7 @@ from .mdl import AbstractAspectModel, AbstractSentimentModel, AspectPairType, Ba
 from cmn.review import Review
 
 # Utility functions
-def add_label(r):
+def add_label_aspect(r):
     r_ = copy.deepcopy(r)
     for i, s in enumerate(r_.sentences):
         for j, _, _ in r.aos[i]: # j is the index of aspect words in sentence s
@@ -23,13 +23,15 @@ def add_label_sentiment(r):
     for i, s in enumerate(r_.sentences):
         for _, _, sentiment in r.aos[i]:
             s.append("__label__" + sent)
+    return r_
 
 def review_formatted_file(path, corpus):
     with open(path, 'w', encoding='utf-8') as f:
         for r in corpus: f.write(' '.join(r) + '\n')
 
 
-class Fast(AbstractAspectModel):
+class Fast(AbstractAspectModel, AbstractSentimentModel):
+    
     def __init__(self, naspects, nwords): 
         super().__init__(naspects, nwords)
         self.aspect_word_prob = None
@@ -58,6 +60,10 @@ class Fast(AbstractAspectModel):
     # TODO: see how to integrate this with LADy pipeline
     def infer(self, review: Review, doctype: str):
         return self.mdl.predict(review.get_txt(), k=self.naspects)
+
+    def add_label(r):
+        # TODO: add method to distinguish between sentiment and aspect analysis
+        return r
     
     @staticmethod
     def preprocess(doctype, reviews, settings=None):
