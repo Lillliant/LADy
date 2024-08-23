@@ -1,9 +1,10 @@
 #python==3.8
+numpy==1.25.2
 pandas==1.4.4
 seaborn
-spacy==3.3.1
-typing_extensions==4.4.0
-tqdm==4.64.1
+spacy==3.7.6
+typing_extensions>=4.4.0
+tqdm==4.66.5
 natsort
 scikit-learn>=1.0.0
 nltk==3.7
@@ -11,18 +12,18 @@ nltk==3.7
 # python -m spacy download en_core_web_trf
 # python -m spacy download en_core_web_sm
 # en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.3.0/en_core_web_sm-3.3.0-py3-none-any.whl
-transformers==4.26.1
-torch==1.13.1
+transformers==4.44.2
+torch==2.4.0
 
 # backtranslation-related modules
 sentence-transformers #for semantic simarlity of backtranslated review with original review
-simalign==0.3         #for aligning words of backtranslated review to the original review
+simalign==0.4         #for aligning words of backtranslated review to the original review
 # networkx==3.1
 rouge                 #for evaluating backtranlated reviews vs. original review
 
 # topic modeling methods for aspect modeling
 gensim==4.*
-bitermplus==0.6.10          #install it if you want to use btm model in the aspect modeling layer
+bitermplus==0.7.0          #install it if you want to use btm model in the aspect modeling layer
 contextualized_topic_models==2.5.0 #install it if you want to use ctm model in the aspect modeling layer
 # octis # #use Fani's Lab! fork at https://github.com/fani-lab/OCTIS followed by "cd src/octis/; python setup.py install"
 
@@ -34,3 +35,20 @@ sentencepiece == 0.1.99
 deep-translator == 1.11.4
 
 fasttext @ git+https://github.com/facebookresearch/fastText.git
+
+click==8.1.7
+dynet==2.1.2
+Flask==3.0.3
+flask_cors==4.0.1
+matplotlib==3.7.2
+more_itertools==10.4.0
+pampy==0.3.0
+pytest==8.3.2
+pytrec_eval==0.5
+Requests==2.32.3
+returns==0.23.0
+scipy==1.14.1
+setuptools==58.1.0
+
+tabulate==0.9.0
+tomotopy==0.13.0
